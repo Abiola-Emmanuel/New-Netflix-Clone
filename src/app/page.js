@@ -37,6 +37,13 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('')
 
+  const divs = [
+    { id: 1 },
+    { id: 2 },
+    { id: 3 },
+    { id: 4 },
+  ]
+
   /* Fetching Movies from the api */
   const fetchMovies = async (url) => {
     setIsLoading(true);
@@ -74,9 +81,20 @@ export default function Home() {
 
   return (
     <>
-      {!isLoading && movies.length > 0 && (
+      {isLoading ? (
+        <div className="grid grid-cols-4 row-span-3 gap-4">
+          {divs.map((item, id) => (
+            <div key={id} className=" w-full h-[450px] md:h-[530px] lg:h-[530px] bg-gray-800 animate-pulse transition-all duration-300"></div>
+          ))}
+        </div>
+      ) : (
         <Banner movie={movies[Math.floor(Math.random() * movies.length)]} />
-      )}
+      )
+      }
+
+      {/*       {!isLoading && movies.length > 0 && (
+        <Banner movie={movies[Math.floor(Math.random() * movies.length)]} />
+      )} */}
 
       {/* Search Bar Section */}
       <div className="flex justify-center gap-5 items-center">

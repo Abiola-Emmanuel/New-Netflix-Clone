@@ -1,10 +1,11 @@
 'use client'
 
+import { useState } from "react";
 import { IMAGE_BASE_URL } from "../config";
 import { FaPlayCircle } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa";
 
-function Banner({ movie }) {
+export default function Banner({ movie }) {
 
   const handleWatchNow = (e, id) => {
     e.stopPropagation();
@@ -42,13 +43,12 @@ function Banner({ movie }) {
             Watch Now
           </button>
           {/*           <button className="bg-gray-600/70 hover:bg-gray-600/90 text-white px-6 py-2 rounded-lg transition-colors duration-200 flex items-center gap-2">
-            <FaPlus className="text-xl" />
-            My List
-          </button> */}
+              <FaPlus className="text-xl" />
+              My List
+            </button> */}
         </div>
       </div>
     </div>
   )
 }
 
-export default Banner;
