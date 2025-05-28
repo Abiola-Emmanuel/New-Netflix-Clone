@@ -1,4 +1,3 @@
-import React from "react";
 import { IMAGE_BASE_URL } from "../config";
 
 function SearchCard({ searchMovie }) {
