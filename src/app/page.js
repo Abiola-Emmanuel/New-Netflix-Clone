@@ -7,6 +7,8 @@ import axios from 'axios';
 import MovieCard from "@/components/MovieCard";
 import { motion } from "framer-motion";
 import { FaSearch } from "react-icons/fa";
+import { AiOutlineLoading } from "react-icons/ai";
+
 
 
 // Genre data
@@ -146,12 +148,8 @@ export default function Home() {
           {genreName}
         </div>
 
-        {isLoading ? (
-          <div className="grid grid-cols-4 row-span-3 gap-4">
-            {divs.map((item, id) => (
-              <div key={id} className=" w-full h-auto aspect-[2/3] bg-gray-800 animate-pulse transition-all duration-300"></div>
-            ))}
-          </div>
+        {isLoading && movies.length < 0 ? (
+          <AiOutlineLoading className="animate-spin text-white w-9 h-9" />
         ) : (
           <MovieCard movie={movies} />
         )}
