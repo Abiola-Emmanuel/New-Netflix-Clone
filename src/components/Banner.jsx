@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { IMAGE_BASE_URL } from "../config";
 import { FaPlayCircle } from "react-icons/fa";
-import { FaPlus } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 export default function Banner({ movie }) {
 
@@ -35,13 +35,14 @@ export default function Banner({ movie }) {
           {movie.overview}
         </p>
         <div className="flex gap-3">
-          <button
+          <motion.button
+            whileTap={{ scale: 0.95 }}
             className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg transition-colors duration-200 flex items-center gap-2 cursor-pointer"
             onClick={(e) => handleWatchNow(e, movie.id)}
           >
             <FaPlayCircle className="text-xl" />
             Watch Now
-          </button>
+          </motion.button>
           {/*           <button className="bg-gray-600/70 hover:bg-gray-600/90 text-white px-6 py-2 rounded-lg transition-colors duration-200 flex items-center gap-2">
               <FaPlus className="text-xl" />
               My List

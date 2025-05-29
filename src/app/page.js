@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { BASE_URL, API_KEY } from '../config';
 import axios from 'axios';
 import MovieCard from "@/components/MovieCard";
+import { motion } from "framer-motion";
 import { FaSearch } from "react-icons/fa";
 
 
@@ -88,13 +89,10 @@ export default function Home() {
           ))}
         </div>
       ) : (
-        <Banner movie={movies[Math.floor(Math.random() * movies.length)]} />
-      )
-      }
-
-      {/*       {!isLoading && movies.length > 0 && (
-        <Banner movie={movies[Math.floor(Math.random() * movies.length)]} />
-      )} */}
+        movies.length > 0 && (
+          <Banner movie={movies[Math.floor(Math.random() * movies.length)]} />
+        )
+      )}
 
       {/* Search Bar Section */}
       <div className="flex justify-center gap-5 items-center">
@@ -115,7 +113,8 @@ export default function Home() {
       <div className=" p-4 md:sticky top-0 z-10">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-wrap gap-2 justify-center">
-            <button
+            <motion.button
+              whileTap={{ scale: 0.95 }}
               onClick={() => setSelectedGenre(null)}
               className={`px-4 py-2 rounded-full text-sm font-medium ${!selectedGenre
                 ? 'bg-red-600 text-white'
@@ -123,9 +122,10 @@ export default function Home() {
                 }`}
             >
               Popular
-            </button>
+            </motion.button>
             {GENRES.map((genre) => (
-              <button
+              <motion.button
+                whileTap={{ scale: 0.95 }}
                 key={genre.id}
                 onClick={() => setSelectedGenre(genre.id)}
                 className={`cursor-pointer px-4 py-2 rounded-full text-sm font-medium ${selectedGenre === genre.id
@@ -134,7 +134,7 @@ export default function Home() {
                   }`}
               >
                 {genre.name}
-              </button>
+              </motion.button>
             ))}
           </div>
         </div>
@@ -147,7 +147,11 @@ export default function Home() {
         </div>
 
         {isLoading ? (
-          <div className="text-white text-center py-20">Loading movies...</div>
+          <div className="grid grid-cols-4 row-span-3 gap-4">
+            {divs.map((item, id) => (
+              <div key={id} className=" w-full h-auto aspect-[2/3] bg-gray-800 animate-pulse transition-all duration-300"></div>
+            ))}
+          </div>
         ) : (
           <MovieCard movie={movies} />
         )}
