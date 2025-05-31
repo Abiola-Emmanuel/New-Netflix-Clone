@@ -97,9 +97,7 @@ export default function MovieCard({ movie, isLoading }) {
       {/* Movie Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 p-4">
         {isLoading ? (
-          <div className="col-span-full flex justify-center py-10">
-            <AiOutlineLoading3Quarters className="animate-spin text-4xl text-red-600" />
-          </div>
+          <div className="bg-gray-800 w-[100px] h-[100px]"></div>
         ) : movie?.length > 0 ? (
           movie.map((item) => (
             <div

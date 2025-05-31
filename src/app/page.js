@@ -85,10 +85,8 @@ export default function Home() {
   return (
     <>
       {isLoading ? (
-        <div className="grid grid-cols-4 row-span-3 gap-4">
-          {divs.map((item, id) => (
-            <div key={id} className=" w-full h-[450px] md:h-[530px] lg:h-[530px] bg-gray-800 animate-pulse transition-all duration-300"></div>
-          ))}
+        <div >
+          <div className="w-full h-[400px] bg-gray-100 dark:bg-gray-800 rounded-lg animate-pulse" />
         </div>
       ) : (
         movies.length > 0 && (
@@ -97,18 +95,20 @@ export default function Home() {
       )}
 
       {/* Search Bar Section */}
-      <div className="flex justify-center gap-5 items-center">
-        <div>
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search for movies..."
-            className="w-full text-center max-w-md mx-auto p-3 mt-4 mb-6 bg-gray-50 rounded-lg shadow-lg test-gray-800 placeholder-text-gray-500"
-          />
-        </div>
-        <FaSearch className="text-white cursor-pointer"
-          onClick={handleSearch} />
+      <div className="flex justify-center gap-3 items-center mb-6">
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Search for movies..."
+          className="w-full max-w-md px-4 py-2 rounded-l-lg bg-gray-50 text-gray-800 placeholder-gray-500 shadow focus:outline-none"
+        />
+        <button
+          className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-r-lg flex items-center"
+          onClick={handleSearch}
+        >
+          <FaSearch />
+        </button>
       </div>
 
       {/* Genre Filter Section */}
@@ -149,7 +149,17 @@ export default function Home() {
         </div>
 
         {isLoading && movies.length < 0 ? (
-          <AiOutlineLoading className="animate-spin text-white w-9 h-9" />
+          <div className="bg-gray-800 w-[100px] h-[100px]"></div>
+        ) : (
+          <MovieCard movie={movies} />
+        )}
+
+        {isLoading ? (
+          <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
+            {[...Array(6)].map((_, i) => (
+              <div key={i} className="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg animate-pulse h-32" />
+            ))}
+          </div>
         ) : (
           <MovieCard movie={movies} />
         )}
